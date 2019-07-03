@@ -7,12 +7,17 @@ const PLOTTR_LIST_URL = 'https://us3.api.mailchimp.com/3.0/lists/4d4d9bfc24/memb
 const TRIAL_LIST_URL = 'https://us3.api.mailchimp.com/3.0/lists/e32e48b713/members'
 
 module.exports = async (req, res) => {
+  console.log('Product ID', req.body.product_id)
   if (req.body.product_id == PLOTTR_PRODUCT_ID) {
     let fakeEmail = `cameronsutter.author@gmail.com`
-    await mailchimp.post(PLOTTR_LIST_URL, {
-      email_address: fakeEmail,
-      status: 'subscribed',
-    })
+    try {
+      await mailchimp.post(PLOTTR_LIST_URL, {
+        email_address: fakeEmail,
+        status: 'subscribed',
+      })
+    } catch (err) {
+      console.error(err)
+    }
 
     // let hash = md5(req.body.email)
     // try {

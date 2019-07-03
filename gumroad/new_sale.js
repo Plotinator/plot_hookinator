@@ -7,28 +7,26 @@ const PLOTTR_LIST_URL = '/lists/4d4d9bfc24/members'
 const TRIAL_LIST_URL = '/lists/e32e48b713/members'
 
 module.exports = async (req, res) => {
-  console.log('Product ID', req.body.product_id)
   if (req.body.product_id == PLOTTR_PRODUCT_ID) {
-    let fakeEmail = `cameronsutter.author@gmail.com`
     try {
       await mailchimp.post(PLOTTR_LIST_URL, {
-        email_address: fakeEmail,
+        email_address: req.body.email,
         status: 'subscribed',
       })
     } catch (err) {
       console.error(err)
     }
 
-    // let hash = md5(req.body.email)
-    // try {
-    //   const memberUrl = `${TRIAL_LIST_URL}/${hash}`
-    //   let member = await mailchimp.get(memberUrl)
-    //   if (member.status == 'subscribed') {
-    //     await mailchimp.delete(memberUrl)
-    //   }
-    // } catch (err) {
-    //   // probably not subscribed ?
-    // }
+    let hash = md5(req.body.email)
+    try {
+      const memberUrl = `${TRIAL_LIST_URL}/${hash}`
+      let member = await mailchimp.get(memberUrl)
+      if (member.status == 'subscribed') {
+        await mailchimp.delete(memberUrl)
+      }
+    } catch (err) {
+      // probably not subscribed ?
+    }
   }
-  res.status(200)
+  res.status(200).send()
 }

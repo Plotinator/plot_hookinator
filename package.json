@@ -1,6 +1,7 @@
 {
   "name": "plot_hookinator",
   "dependencies": {
+    "js-md5": "^0.7.3",
     "mailchimp-api-v3": "^1.13.0"
   }
 }

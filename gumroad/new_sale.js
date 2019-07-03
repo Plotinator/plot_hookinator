@@ -9,6 +9,7 @@ const TRIAL_LIST_URL = '/lists/e32e48b713/members'
 module.exports = async (req, res) => {
   if (req.body.product_id == PLOTTR_PRODUCT_ID) {
     try {
+      console.log('EMAIL addy', req.body.email)
       await mailchimp.post(PLOTTR_LIST_URL, {
         email_address: req.body.email,
         status: 'subscribed',

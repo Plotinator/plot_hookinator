@@ -1,0 +1,6 @@
+{
+  "name": "plot_hookinator",
+  "dependencies": {
+    "mailchimp-api-v3": "^1.13.0"
+  }
+}

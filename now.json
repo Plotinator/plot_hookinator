@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "builds": [
-    { "src": "gumroad/new_sale.js", "use": "@now/node" }
-  ],
-  "env": {
-    "MAILCHIMP_TOKEN": "@mailchimp-token"
-  }
-}

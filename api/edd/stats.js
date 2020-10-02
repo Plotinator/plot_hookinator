@@ -4,13 +4,14 @@ import dateFormat from 'dateformat'
 const BASE_URL = 'http://getplottr.com'
 
 module.exports = async (req, res) => {
-  let basicSales = null, todaySales = null, allTimeSales = null
+  let response = null, basicSales = null, todaySales = null, allTimeSales = null
 
   console.log('IN THE FUNCTION')
 
   try {
     console.log('basicSales', basicSalesURL())
-    basicSales = await axios.get(basicSalesURL())
+    response = await axios.get(basicSalesURL())
+    basicSales = response.data
     console.log(basicSales)
   } catch (error) {
     return res.json({ error })

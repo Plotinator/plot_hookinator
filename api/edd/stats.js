@@ -7,21 +7,21 @@ module.exports = async (req, res) => {
   let basicSales = null, todaySales = null, allTimeSales = null
 
   try {
-    console.log('basicSales')
+    console.log('basicSales', basicSalesURL())
     basicSales = await axios.get(basicSalesURL())
     console.log(basicSales)
   } catch (error) {
     return res.json({ error })
   }
   try {
-    console.log('todaySales')
+    console.log('todaySales', todaySalesURL())
     todaySales = await axios.get(todaySalesURL())
     console.log(todaySales)
   } catch (error) {
     return res.json({ error })
   }
   try {
-    console.log('allTimeSales')
+    console.log('allTimeSales', allTimeSalesURL())
     allTimeSales = await axios.get(allTimeSalesURL())
     console.log(allTimeSales)
   } catch (error) {

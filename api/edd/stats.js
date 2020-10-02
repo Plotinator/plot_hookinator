@@ -4,7 +4,7 @@ import dateFormat from 'dateformat'
 const BASE_URL = 'http://getplottr.com'
 
 module.exports = async (req, res) => {
-  let response = null, basicSales = null, todaySales = null, allTimeSales = null
+  let response = null, basicSales = null, yesterdaySales = null, allTimeSales = null
 
   try {
     response = await axios.get(basicSalesURL())
@@ -13,8 +13,8 @@ module.exports = async (req, res) => {
     return res.json({ error })
   }
   try {
-    response = await axios.get(todaySalesURL())
-    todaySales = response.data
+    response = await axios.get(yesterdaySalesURL())
+    yesterdaySales = response.data
   } catch (error) {
     return res.json({ error })
   }
@@ -25,15 +25,15 @@ module.exports = async (req, res) => {
     return res.json({ error })
   }
 
-  res.json({ basicSales, todaySales, allTimeSales })
+  res.json({ basicSales, yesterdaySales, allTimeSales })
 }
 
 function basicSalesURL() {
   return apiURL()
 }
 
-function todaySalesURL() {
-  return apiURL('&date=today')
+function yesterdaySalesURL() {
+  return apiURL('&date=yesterday')
 }
 
 function allTimeSalesURL() {

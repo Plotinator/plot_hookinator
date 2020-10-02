@@ -1,6 +1,8 @@
 {
   "name": "plot_hookinator",
   "dependencies": {
+    "axios": "^0.20.0",
+    "dateformat": "^3.0.3",
     "js-md5": "^0.7.3",
     "mailchimp-api-v3": "^1.13.0",
     "mailgun-js": "^0.22.0"

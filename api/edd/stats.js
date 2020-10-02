@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
 
   try {
     console.log('basicSales', basicSalesURL())
-    // basicSales = await axios.get(basicSalesURL())
+    basicSales = await axios.get(basicSalesURL())
     console.log(basicSales)
   } catch (error) {
     return res.json({ error })

@@ -4,11 +4,18 @@ import dateFormat from 'dateformat'
 const BASE_URL = 'http://getplottr.com'
 
 module.exports = async (req, res) => {
-  let response = null, basicSales = null, yesterdaySales = null, allTimeSales = null
+  let response = null,
+    basicSales = null, basicEarnings = null, yesterdaySales = null, allTimeSales = null
 
   try {
     response = await axios.get(basicSalesURL())
     basicSales = response.data
+  } catch (error) {
+    return res.json({ error })
+  }
+  try {
+    response = await axios.get(basicEarningsURL())
+    basicEarnings = response.data
   } catch (error) {
     return res.json({ error })
   }
@@ -25,22 +32,26 @@ module.exports = async (req, res) => {
     return res.json({ error })
   }
 
-  res.json({ basicSales, yesterdaySales, allTimeSales })
+  res.json({ basicSales, basicEarnings, yesterdaySales, allTimeSales })
+}
+
+function basicEarningsURL() {
+  return apiURL('&type=earnings')
 }
 
 function basicSalesURL() {
-  return apiURL()
+  return apiURL('&type=sales')
 }
 
 function yesterdaySalesURL() {
-  return apiURL('&date=yesterday')
+  return apiURL('&type=sales&date=yesterday')
 }
 
 function allTimeSalesURL() {
   const now = new Date()
-  return apiURL(`&date=range&startdate=20200501&enddate=${dateFormat(now, 'yyyymmdd')}`)
+  return apiURL(`&type=sales&date=range&startdate=20200501&enddate=${dateFormat(now, 'yyyymmdd')}`)
 }
 
 function apiURL(params = '') {
-  return `${BASE_URL}/edd-api/stats/?key=${process.env.EDD_KEY}&token=${process.env.EDD_TOKEN}&type=sales${params}`;
+  return `${BASE_URL}/edd-api/stats/?key=${process.env.EDD_KEY}&token=${process.env.EDD_TOKEN}${params}`;
 }

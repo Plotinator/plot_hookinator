@@ -6,6 +6,8 @@ const BASE_URL = 'http://getplottr.com'
 module.exports = async (req, res) => {
   let basicSales = null, todaySales = null, allTimeSales = null
 
+  console.log('IN THE FUNCTION')
+
   try {
     console.log('basicSales', basicSalesURL())
     basicSales = await axios.get(basicSalesURL())

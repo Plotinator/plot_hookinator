@@ -10,21 +10,21 @@ module.exports = async (req, res) => {
 
   try {
     console.log('basicSales', basicSalesURL())
-    basicSales = await axios.get(basicSalesURL())
+    // basicSales = await axios.get(basicSalesURL())
     console.log(basicSales)
   } catch (error) {
     return res.json({ error })
   }
   try {
     console.log('todaySales', todaySalesURL())
-    todaySales = await axios.get(todaySalesURL())
+    // todaySales = await axios.get(todaySalesURL())
     console.log(todaySales)
   } catch (error) {
     return res.json({ error })
   }
   try {
     console.log('allTimeSales', allTimeSalesURL())
-    allTimeSales = await axios.get(allTimeSalesURL())
+    // allTimeSales = await axios.get(allTimeSalesURL())
     console.log(allTimeSales)
   } catch (error) {
     return res.json({ error })
